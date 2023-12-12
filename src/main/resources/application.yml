@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    hikari:
+      #连接池名
+      pool-name: DateHikariCP
+      #最小空闲连接出
+      minimum-idle: 5
+      #空闲连接存活最大时间，默认600000(10分钟)
+      idle-timeout: 1800000
+      #最大连接数，默认10
+      maximum-pool-size: 10
+      #从连接池返回的连接自动提交
+      auto-commit: true
+      #连接最大存活时间，0表示永久存活，默认1800000(30分支)
+      max-lifetime: 1800000
+      #连接超时时间，默认30000(30秒)connection-timeout: 30000#测试连接是否可用的查询语句
+      connection-test-query: SELECT 1
+
+pagehelper:
+  helperDialect: mysql # 指定数据库，不指定的话会默认自动检测数据库类型
+  reasonable: true
+  supportMethodsArguments: false # 默认值false，
+  params: count=countSql
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

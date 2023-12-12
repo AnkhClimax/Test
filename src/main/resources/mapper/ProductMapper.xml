@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ProductMapper">
+
+    <select id="searchByKey" resultType="com.example.demo.vo.ProductVO">
+        select p_id,p_name,t_content1,t_content2,t_content3,t_content4,t_content5,
+               s_content1,s_content2,s_content3,s_content4,s_content5
+        from product left join temp on product.temp_id=temp.t_id left join state on product.state_id=state.s_id
+        where p_name like '%${key}%' or t_content1 like '%${key}%' or t_content2 like '%${key}%' or t_content3 like '%${key}%'
+           or t_content4 like '%${key}%'  or t_content5 like '%${key}%' or s_content1 like '%${key}%'
+           or s_content2 like '%${key}%' or s_content3 like '%${key}%' or s_content4 like '%${key}%' or s_content5 like '%${key}%'
+    </select>
+
+</mapper>
